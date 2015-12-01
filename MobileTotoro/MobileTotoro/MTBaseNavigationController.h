@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  MTBaseNavigationController.h
 //  MobileTotoro
 //
 //  Created by 徐杨 on 15/11/30.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface MTBaseNavigationController : UINavigationController
 
 @end
-

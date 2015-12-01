@@ -8,13 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		29C70CF11C0C18960018B7D7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C70CF01C0C18960018B7D7 /* main.m */; };
-		29C70CF41C0C18960018B7D7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C70CF31C0C18960018B7D7 /* AppDelegate.m */; };
-		29C70CF71C0C18960018B7D7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C70CF61C0C18960018B7D7 /* ViewController.m */; };
 		29C70CFA1C0C18960018B7D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29C70CF81C0C18960018B7D7 /* Main.storyboard */; };
 		29C70CFC1C0C18960018B7D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29C70CFB1C0C18960018B7D7 /* Assets.xcassets */; };
 		29C70CFF1C0C18960018B7D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29C70CFD1C0C18960018B7D7 /* LaunchScreen.storyboard */; };
 		29C70D0A1C0C18960018B7D7 /* MobileTotoroTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C70D091C0C18960018B7D7 /* MobileTotoroTests.m */; };
 		29C70D151C0C18960018B7D7 /* MobileTotoroUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C70D141C0C18960018B7D7 /* MobileTotoroUITests.m */; };
+		29C70D241C0C1A640018B7D7 /* MTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C70D231C0C1A640018B7D7 /* MTAppDelegate.m */; };
+		29C70D271C0C1BEE0018B7D7 /* MTRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C70D261C0C1BEE0018B7D7 /* MTRootViewController.m */; };
+		29C7266D1C0C45200089E12C /* MTBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C7266C1C0C45200089E12C /* MTBaseNavigationController.m */; };
+		29C726741C0C4BC40089E12C /* MTTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C726731C0C4BC40089E12C /* MTTableViewController.m */; };
+		29C726771C0D72130089E12C /* MTSummaryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C726761C0D72130089E12C /* MTSummaryTableViewCell.m */; };
+		29C7267A1C0D72390089E12C /* MTChartTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C726791C0D72390089E12C /* MTChartTableViewCell.m */; };
+		29C7267D1C0D92C40089E12C /* MTSummaryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C7267C1C0D92C40089E12C /* MTSummaryView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,10 +42,6 @@
 /* Begin PBXFileReference section */
 		29C70CEC1C0C18960018B7D7 /* MobileTotoro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileTotoro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29C70CF01C0C18960018B7D7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		29C70CF21C0C18960018B7D7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		29C70CF31C0C18960018B7D7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		29C70CF51C0C18960018B7D7 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		29C70CF61C0C18960018B7D7 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		29C70CF91C0C18960018B7D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		29C70CFB1C0C18960018B7D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		29C70CFE1C0C18960018B7D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +52,21 @@
 		29C70D101C0C18960018B7D7 /* MobileTotoroUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobileTotoroUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		29C70D141C0C18960018B7D7 /* MobileTotoroUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MobileTotoroUITests.m; sourceTree = "<group>"; };
 		29C70D161C0C18960018B7D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		29C70D221C0C1A640018B7D7 /* MTAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTAppDelegate.h; sourceTree = "<group>"; };
+		29C70D231C0C1A640018B7D7 /* MTAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTAppDelegate.m; sourceTree = "<group>"; };
+		29C70D251C0C1BEE0018B7D7 /* MTRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTRootViewController.h; sourceTree = "<group>"; };
+		29C70D261C0C1BEE0018B7D7 /* MTRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTRootViewController.m; sourceTree = "<group>"; };
+		29C7266B1C0C45200089E12C /* MTBaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTBaseNavigationController.h; sourceTree = "<group>"; };
+		29C7266C1C0C45200089E12C /* MTBaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTBaseNavigationController.m; sourceTree = "<group>"; };
+		29C7266E1C0C46070089E12C /* MTMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MTMacro.h; sourceTree = "<group>"; };
+		29C726721C0C4BC40089E12C /* MTTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MTTableViewController.h; path = Controller/MTTableViewController.h; sourceTree = "<group>"; };
+		29C726731C0C4BC40089E12C /* MTTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MTTableViewController.m; path = Controller/MTTableViewController.m; sourceTree = "<group>"; };
+		29C726751C0D72130089E12C /* MTSummaryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MTSummaryTableViewCell.h; path = View/MTSummaryTableViewCell.h; sourceTree = "<group>"; };
+		29C726761C0D72130089E12C /* MTSummaryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MTSummaryTableViewCell.m; path = View/MTSummaryTableViewCell.m; sourceTree = "<group>"; };
+		29C726781C0D72390089E12C /* MTChartTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MTChartTableViewCell.h; path = View/MTChartTableViewCell.h; sourceTree = "<group>"; };
+		29C726791C0D72390089E12C /* MTChartTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MTChartTableViewCell.m; path = View/MTChartTableViewCell.m; sourceTree = "<group>"; };
+		29C7267B1C0D92C40089E12C /* MTSummaryView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MTSummaryView.h; path = View/MTSummaryView.h; sourceTree = "<group>"; };
+		29C7267C1C0D92C40089E12C /* MTSummaryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MTSummaryView.m; path = View/MTSummaryView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,14 +117,13 @@
 		29C70CEE1C0C18960018B7D7 /* MobileTotoro */ = {
 			isa = PBXGroup;
 			children = (
-				29C70CF21C0C18960018B7D7 /* AppDelegate.h */,
-				29C70CF31C0C18960018B7D7 /* AppDelegate.m */,
-				29C70CF51C0C18960018B7D7 /* ViewController.h */,
-				29C70CF61C0C18960018B7D7 /* ViewController.m */,
-				29C70CF81C0C18960018B7D7 /* Main.storyboard */,
+				29C70D2A1C0C28040018B7D7 /* Controller */,
+				29C70D281C0C27EB0018B7D7 /* Model */,
+				29C70D291C0C27FA0018B7D7 /* View */,
+				29C70D221C0C1A640018B7D7 /* MTAppDelegate.h */,
+				29C70D231C0C1A640018B7D7 /* MTAppDelegate.m */,
+				29C7266E1C0C46070089E12C /* MTMacro.h */,
 				29C70CFB1C0C18960018B7D7 /* Assets.xcassets */,
-				29C70CFD1C0C18960018B7D7 /* LaunchScreen.storyboard */,
-				29C70D001C0C18960018B7D7 /* Info.plist */,
 				29C70CEF1C0C18960018B7D7 /* Supporting Files */,
 			);
 			path = MobileTotoro;
@@ -117,6 +132,9 @@
 		29C70CEF1C0C18960018B7D7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				29C70CF81C0C18960018B7D7 /* Main.storyboard */,
+				29C70CFD1C0C18960018B7D7 /* LaunchScreen.storyboard */,
+				29C70D001C0C18960018B7D7 /* Info.plist */,
 				29C70CF01C0C18960018B7D7 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -138,6 +156,39 @@
 				29C70D161C0C18960018B7D7 /* Info.plist */,
 			);
 			path = MobileTotoroUITests;
+			sourceTree = "<group>";
+		};
+		29C70D281C0C27EB0018B7D7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		29C70D291C0C27FA0018B7D7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				29C726751C0D72130089E12C /* MTSummaryTableViewCell.h */,
+				29C726761C0D72130089E12C /* MTSummaryTableViewCell.m */,
+				29C7267B1C0D92C40089E12C /* MTSummaryView.h */,
+				29C7267C1C0D92C40089E12C /* MTSummaryView.m */,
+				29C726781C0D72390089E12C /* MTChartTableViewCell.h */,
+				29C726791C0D72390089E12C /* MTChartTableViewCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		29C70D2A1C0C28040018B7D7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				29C70D251C0C1BEE0018B7D7 /* MTRootViewController.h */,
+				29C70D261C0C1BEE0018B7D7 /* MTRootViewController.m */,
+				29C7266B1C0C45200089E12C /* MTBaseNavigationController.h */,
+				29C7266C1C0C45200089E12C /* MTBaseNavigationController.m */,
+				29C726721C0C4BC40089E12C /* MTTableViewController.h */,
+				29C726731C0C4BC40089E12C /* MTTableViewController.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,9 +321,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				29C70CF71C0C18960018B7D7 /* ViewController.m in Sources */,
-				29C70CF41C0C18960018B7D7 /* AppDelegate.m in Sources */,
+				29C70D271C0C1BEE0018B7D7 /* MTRootViewController.m in Sources */,
+				29C7267A1C0D72390089E12C /* MTChartTableViewCell.m in Sources */,
 				29C70CF11C0C18960018B7D7 /* main.m in Sources */,
+				29C70D241C0C1A640018B7D7 /* MTAppDelegate.m in Sources */,
+				29C7267D1C0D92C40089E12C /* MTSummaryView.m in Sources */,
+				29C7266D1C0C45200089E12C /* MTBaseNavigationController.m in Sources */,
+				29C726741C0C4BC40089E12C /* MTTableViewController.m in Sources */,
+				29C726771C0D72130089E12C /* MTSummaryTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -496,6 +552,7 @@
 				29C70D1B1C0C18960018B7D7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		29C70D1C1C0C18960018B7D7 /* Build configuration list for PBXNativeTarget "MobileTotoroTests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +561,7 @@
 				29C70D1E1C0C18960018B7D7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		29C70D1F1C0C18960018B7D7 /* Build configuration list for PBXNativeTarget "MobileTotoroUITests" */ = {
 			isa = XCConfigurationList;
@@ -512,6 +570,7 @@
 				29C70D211C0C18960018B7D7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  MTRootViewController.h
 //  MobileTotoro
 //
 //  Created by 徐杨 on 15/11/30.
@@ -8,10 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
+@interface MTRootViewController : UIViewController
 
 @end
-
