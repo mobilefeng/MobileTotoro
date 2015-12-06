@@ -14,6 +14,10 @@
 #define kMTThemeColor                   (UIColorFromRGB(0xFF4683))
 #define kMTNavColor                     (UIColorFromRGB(0xF7F7F7))
 #define kMTBackgroundColor              (UIColorFromRGB(0xEEEEEE))
+#define kMTSummaryViewBackColor         (UIColorFromRGB(0x37C990))
+
+#define kMTSummaryGreyColor             (UIColorFromRGB(0xF0F0F0))
+#define kMTSummaryYellowColor           (UIColorFromRGB(0xF8E71C))
 
 // 尺寸
 #define kMTWindowWidth                  ([UIScreen mainScreen].bounds.size.width)

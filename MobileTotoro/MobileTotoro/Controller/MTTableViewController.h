@@ -8,25 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-/*
- *  Section
- */
-enum {
-    kMTTableViewSectionSummary = 0,
-    kMTTableViewSectionChart,
-    kMTTableViewSectionCount,
-};
-
-/*
- *  Row of Section
- */
-enum {
-    kMTTableViewChartRowCPU = 0,
-    kMTTableViewChartRowMEM,
-    kMTTableViewChartRowFPS,
-    kMTTableViewChartRowCount,
-};
-
 @interface MTTableViewController : UITableViewController
 
 @end

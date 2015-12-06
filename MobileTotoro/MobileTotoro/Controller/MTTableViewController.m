@@ -15,6 +15,31 @@
 #import "MTSummaryTableViewCell.h"
 #import "MTChartTableViewCell.h"
 
+/*
+ *  Sections
+ */
+typedef NS_ENUM(NSUInteger, eMTTableViewSection) {
+    eMTTableViewSectionSummary = 0,
+    eMTTableViewSectionChart,
+    eMTTableViewSectionCount,
+};
+
+/*
+ *  Rows of Chart Section
+ */
+typedef NS_ENUM(NSUInteger, eMTTableViewChartRow) {
+    eMTTableViewChartRowCPU = 0,
+    eMTTableViewChartRowMEM,
+    eMTTableViewChartRowFPS,
+    eMTTableViewChartRowCount,
+};
+
+@interface MTTableViewController ()
+
+@property NSDictionary *summaryData;
+
+@end
+
 @implementation MTTableViewController
 
 #pragma mark - Lifecycle
@@ -29,23 +54,35 @@
     
     // 设置navigation属性
     [self.navigationItem setTitle:@"MobileTotoro"];
+    
+    // 初始化假数据model
+    self.summaryData = [NSDictionary dictionaryWithObjectsAndKeys:
+                        @"35%", @"cpuNow",
+                        @"0%", @"cpuMin",
+                        @"98%", @"cpuMax",
+                        @"27%", @"cpuMean",
+                        @"45M", @"memNow",
+                        @"0M", @"memMin",
+                        @"70M", @"memMax",
+                        @"39M", @"memMean",
+                        @"55Hz", @"fpsNow", nil];
 }
 
 #pragma mark - Tableview DateSource & Delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return kMTTableViewSectionCount;
+    return eMTTableViewSectionCount;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSInteger nuoOfRow = 0;
     
     switch (section) {
-        case kMTTableViewSectionSummary: {
+        case eMTTableViewSectionSummary: {
             nuoOfRow = 1;
         }
             break;
-        case kMTTableViewSectionChart: {
-            nuoOfRow = kMTTableViewChartRowCount;
+        case eMTTableViewSectionChart: {
+            nuoOfRow = eMTTableViewChartRowCount;
         }
     }
     
@@ -56,11 +93,11 @@
     CGFloat heightForCell = 0.0;
     
     switch (indexPath.section) {
-        case kMTTableViewSectionSummary: {
+        case eMTTableViewSectionSummary: {
             heightForCell = 0.25 * kMTWindowWidth;
         }
             break;
-        case kMTTableViewSectionChart: {
+        case eMTTableViewSectionChart: {
             heightForCell = 0.5 * kMTWindowWidth;
         }
     }
@@ -71,16 +108,17 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     switch (indexPath.section) {
-        case kMTTableViewSectionSummary: {
+        case eMTTableViewSectionSummary: {
             static NSString *cellIdentifier = @"SummaryCell";
             MTSummaryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
             if (!cell) {
-                cell = [[MTSummaryTableViewCell alloc] init];
+                cell = [[MTSummaryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
             }
+            [cell refreshCellWithData:self.summaryData];
             return cell;
         }
             break;
-        case kMTTableViewSectionChart: {
+        case eMTTableViewSectionChart: {
             
         }
     }

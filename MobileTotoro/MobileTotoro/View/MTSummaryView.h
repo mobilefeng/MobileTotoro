@@ -10,4 +10,14 @@
 
 @interface MTSummaryView : UIView
 
+- (void)setTitle:(NSString *)title;
+
+- (void)setCurrentValue:(NSString *)currentValue;
+
+- (void)setMinValue:(NSString *)minValue;
+
+- (void)setMaxValue:(NSString *)macValue;
+
+- (void)setMeanValue:(NSString *)meanValue;
+
 @end
