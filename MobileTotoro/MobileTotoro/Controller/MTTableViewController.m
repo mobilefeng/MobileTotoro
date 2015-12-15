@@ -30,7 +30,7 @@ typedef NS_ENUM(NSUInteger, eMTTableViewSection) {
 typedef NS_ENUM(NSUInteger, eMTTableViewChartRow) {
     eMTTableViewChartRowCPU = 0,
     eMTTableViewChartRowMEM,
-    eMTTableViewChartRowFPS,
+//    eMTTableViewChartRowFPS,
     eMTTableViewChartRowCount,
 };
 
@@ -100,6 +100,7 @@ typedef NS_ENUM(NSUInteger, eMTTableViewChartRow) {
         case eMTTableViewSectionChart: {
             heightForCell = 0.5 * kMTWindowWidth;
         }
+            break;
     }
     
     return heightForCell;
@@ -119,8 +120,23 @@ typedef NS_ENUM(NSUInteger, eMTTableViewChartRow) {
         }
             break;
         case eMTTableViewSectionChart: {
-            
+            switch (indexPath.row) {
+                case eMTTableViewChartRowCPU: {
+                    static NSString *cellIdentifier = @"CPUChartCell";
+                    MTChartTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+                    if (!cell) {
+                        cell = [[MTChartTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+                    }
+                    return cell;
+                }
+                    break;
+                case eMTTableViewChartRowMEM: {
+                    
+                }
+                    break;
+            }
         }
+            break;
     }
     
     return [[UITableViewCell alloc] init];

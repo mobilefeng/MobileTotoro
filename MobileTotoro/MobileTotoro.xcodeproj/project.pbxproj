@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		294F7F061C1E5C4000FE66C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 294F7F041C1E5C4000FE66C4 /* Main.storyboard */; };
+		298A16F21C1E6D7D00D4A978 /* MTPerformanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 298A16F11C1E6D7D00D4A978 /* MTPerformanceModel.m */; };
+		298A16F51C1E6D9800D4A978 /* MTPerformanceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 298A16F41C1E6D9800D4A978 /* MTPerformanceManager.m */; };
+		29A665281C140D2900300911 /* MTChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A665271C140D2900300911 /* MTChartView.m */; };
 		29C70CF11C0C18960018B7D7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C70CF01C0C18960018B7D7 /* main.m */; };
-		29C70CFA1C0C18960018B7D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29C70CF81C0C18960018B7D7 /* Main.storyboard */; };
 		29C70CFC1C0C18960018B7D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29C70CFB1C0C18960018B7D7 /* Assets.xcassets */; };
 		29C70CFF1C0C18960018B7D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29C70CFD1C0C18960018B7D7 /* LaunchScreen.storyboard */; };
 		29C70D0A1C0C18960018B7D7 /* MobileTotoroTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C70D091C0C18960018B7D7 /* MobileTotoroTests.m */; };
@@ -40,9 +43,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		294F7F051C1E5C4000FE66C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		298A16F01C1E6D7D00D4A978 /* MTPerformanceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MTPerformanceModel.h; path = Model/MTPerformanceModel.h; sourceTree = "<group>"; };
+		298A16F11C1E6D7D00D4A978 /* MTPerformanceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MTPerformanceModel.m; path = Model/MTPerformanceModel.m; sourceTree = "<group>"; };
+		298A16F31C1E6D9800D4A978 /* MTPerformanceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MTPerformanceManager.h; path = Model/MTPerformanceManager.h; sourceTree = "<group>"; };
+		298A16F41C1E6D9800D4A978 /* MTPerformanceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MTPerformanceManager.m; path = Model/MTPerformanceManager.m; sourceTree = "<group>"; };
+		29A665261C140D2900300911 /* MTChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MTChartView.h; path = View/MTChartView.h; sourceTree = "<group>"; };
+		29A665271C140D2900300911 /* MTChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MTChartView.m; path = View/MTChartView.m; sourceTree = "<group>"; };
 		29C70CEC1C0C18960018B7D7 /* MobileTotoro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileTotoro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29C70CF01C0C18960018B7D7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		29C70CF91C0C18960018B7D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		29C70CFB1C0C18960018B7D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		29C70CFE1C0C18960018B7D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		29C70D001C0C18960018B7D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -94,6 +103,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		29A665241C140C9800300911 /* SummaryView */ = {
+			isa = PBXGroup;
+			children = (
+				29C726751C0D72130089E12C /* MTSummaryTableViewCell.h */,
+				29C726761C0D72130089E12C /* MTSummaryTableViewCell.m */,
+				29C7267B1C0D92C40089E12C /* MTSummaryView.h */,
+				29C7267C1C0D92C40089E12C /* MTSummaryView.m */,
+			);
+			name = SummaryView;
+			sourceTree = "<group>";
+		};
+		29A665251C140CB200300911 /* ChartView */ = {
+			isa = PBXGroup;
+			children = (
+				29C726781C0D72390089E12C /* MTChartTableViewCell.h */,
+				29C726791C0D72390089E12C /* MTChartTableViewCell.m */,
+				29A665261C140D2900300911 /* MTChartView.h */,
+				29A665271C140D2900300911 /* MTChartView.m */,
+			);
+			name = ChartView;
+			sourceTree = "<group>";
+		};
 		29C70CE31C0C18960018B7D7 = {
 			isa = PBXGroup;
 			children = (
@@ -132,10 +163,10 @@
 		29C70CEF1C0C18960018B7D7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				29C70CF81C0C18960018B7D7 /* Main.storyboard */,
 				29C70CFD1C0C18960018B7D7 /* LaunchScreen.storyboard */,
 				29C70D001C0C18960018B7D7 /* Info.plist */,
 				29C70CF01C0C18960018B7D7 /* main.m */,
+				294F7F041C1E5C4000FE66C4 /* Main.storyboard */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -161,6 +192,10 @@
 		29C70D281C0C27EB0018B7D7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				298A16F01C1E6D7D00D4A978 /* MTPerformanceModel.h */,
+				298A16F11C1E6D7D00D4A978 /* MTPerformanceModel.m */,
+				298A16F31C1E6D9800D4A978 /* MTPerformanceManager.h */,
+				298A16F41C1E6D9800D4A978 /* MTPerformanceManager.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -168,12 +203,8 @@
 		29C70D291C0C27FA0018B7D7 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				29C726751C0D72130089E12C /* MTSummaryTableViewCell.h */,
-				29C726761C0D72130089E12C /* MTSummaryTableViewCell.m */,
-				29C7267B1C0D92C40089E12C /* MTSummaryView.h */,
-				29C7267C1C0D92C40089E12C /* MTSummaryView.m */,
-				29C726781C0D72390089E12C /* MTChartTableViewCell.h */,
-				29C726791C0D72390089E12C /* MTChartTableViewCell.m */,
+				29A665251C140CB200300911 /* ChartView */,
+				29A665241C140C9800300911 /* SummaryView */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -294,9 +325,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				294F7F061C1E5C4000FE66C4 /* Main.storyboard in Resources */,
 				29C70CFF1C0C18960018B7D7 /* LaunchScreen.storyboard in Resources */,
 				29C70CFC1C0C18960018B7D7 /* Assets.xcassets in Resources */,
-				29C70CFA1C0C18960018B7D7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,9 +353,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				29C70D271C0C1BEE0018B7D7 /* MTRootViewController.m in Sources */,
+				29A665281C140D2900300911 /* MTChartView.m in Sources */,
 				29C7267A1C0D72390089E12C /* MTChartTableViewCell.m in Sources */,
 				29C70CF11C0C18960018B7D7 /* main.m in Sources */,
+				298A16F51C1E6D9800D4A978 /* MTPerformanceManager.m in Sources */,
 				29C70D241C0C1A640018B7D7 /* MTAppDelegate.m in Sources */,
+				298A16F21C1E6D7D00D4A978 /* MTPerformanceModel.m in Sources */,
 				29C7267D1C0D92C40089E12C /* MTSummaryView.m in Sources */,
 				29C7266D1C0C45200089E12C /* MTBaseNavigationController.m in Sources */,
 				29C726741C0C4BC40089E12C /* MTTableViewController.m in Sources */,
@@ -364,10 +398,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		29C70CF81C0C18960018B7D7 /* Main.storyboard */ = {
+		294F7F041C1E5C4000FE66C4 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				29C70CF91C0C18960018B7D7 /* Base */,
+				294F7F051C1E5C4000FE66C4 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

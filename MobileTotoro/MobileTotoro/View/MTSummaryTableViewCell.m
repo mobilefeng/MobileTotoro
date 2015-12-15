@@ -40,6 +40,7 @@
     return self;
 }
 
+#pragma mark - Data
 - (void)refreshCellWithData:(NSDictionary *)data {
     // CPU View
     [self.cpuView setTitle:@"CPU"];

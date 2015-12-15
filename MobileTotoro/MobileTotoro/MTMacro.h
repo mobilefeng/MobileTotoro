@@ -19,6 +19,10 @@
 #define kMTSummaryGreyColor             (UIColorFromRGB(0xF0F0F0))
 #define kMTSummaryYellowColor           (UIColorFromRGB(0xF8E71C))
 
+#define kMTOutLineColor                 (UIColorFromRGB(0xBFBFBF))
+#define kMTInLineColr                   (UIColorFromRGB(0xEFEFEF))
+
+
 // 尺寸
 #define kMTWindowWidth                  ([UIScreen mainScreen].bounds.size.width)
 #define kMTWindowHeight                 ([UIScreen mainScreen].bounds.size.height)

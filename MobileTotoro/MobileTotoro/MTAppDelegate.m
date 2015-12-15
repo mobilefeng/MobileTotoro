@@ -10,6 +10,7 @@
 
 #import "MTRootViewController.h"
 #import "MTBaseNavigationController.h"
+#import "MTPerformanceManager.h"
 
 @interface MTAppDelegate ()
 
@@ -24,6 +25,8 @@
     MTBaseNavigationController *navController = [[MTBaseNavigationController alloc] initWithRootViewController:rootViewController];
     self.window.rootViewController = navController;
     [self.window makeKeyAndVisible];
+    
+    [[MTPerformanceManager sharedInstance] start];
     
     return YES;
 }
