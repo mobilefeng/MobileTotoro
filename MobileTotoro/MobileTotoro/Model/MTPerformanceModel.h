@@ -15,6 +15,6 @@
 @property (nonatomic, strong) NSNumber *memValue;
 @property (nonatomic, strong) NSNumber *fpsValue;
 
-+ (id)performanceWithCPU:(NSNumber *)cpu MEM:(NSNumber *)mem FPS:(NSNumber *)fps atTime:(NSDate *)time;
+- (id)initWithCPU:(NSNumber *)cpu MEM:(NSNumber *)mem FPS:(NSNumber *)fps atTime:(NSDate *)time;
 
 @end

@@ -10,4 +10,6 @@
 
 @interface MTChartTableViewCell : UITableViewCell
 
+- (void)refreshChartCellWithData:(NSArray *)dataArray;
+
 @end

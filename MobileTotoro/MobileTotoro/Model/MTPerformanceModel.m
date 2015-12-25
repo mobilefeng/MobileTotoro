@@ -10,4 +10,17 @@
 
 @implementation MTPerformanceModel
 
+- (id)initWithCPU:(NSNumber *)cpu MEM:(NSNumber *)mem FPS:(NSNumber *)fps atTime:(NSDate *)time {
+    self = [super init];
+    
+    if (self) {
+        _cpuValue = cpu;
+        _memValue = mem;
+        _fpsValue = fps;
+        _sampleTime = time;
+    }
+    
+    return self;
+}
+
 @end

@@ -30,4 +30,6 @@
 
 - (id)initWithFrame:(CGRect)frame withSource:(id<MTChartDataSource>)dataSource;
 
+- (void)drawLineWithData:(NSArray *)dataArray;
+
 @end

@@ -22,6 +22,9 @@
 
 @property (assign, nonatomic) id<MTChartDataSource> dataSource;
 
+@property (nonatomic) CGFloat yValueMin;
+@property (nonatomic) CGFloat yValueMax;
+
 @end
 
 @implementation MTChartView
@@ -36,6 +39,8 @@
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
         self.clipsToBounds = YES;
+        self.yValueMin = 0;
+        self.yValueMax = 50;
         [self setUpChart];
     }
     return self;
@@ -51,7 +56,63 @@
     if ([self.dataSource respondsToSelector:@selector(MTChartYLabelArray:)]) {
         [self strokeYLabel:[self.dataSource MTChartYLabelArray:self]];
     }
+}
+
+- (void)drawLineWithData:(NSArray *)dataArray {
+    NSLog(@"It's drawing line!!!!!!!!");
     
+    if (dataArray.count <=0) {
+        return;
+    }
+    
+    // 初始化layer和path
+    CAShapeLayer *chartLineLayer = [CAShapeLayer layer];
+//    [chartLineLayer setLineCap:kCALineCapRound];
+//    [chartLineLayer setLineJoin:kCALineJoinBevel];
+    [self.layer addSublayer:chartLineLayer];
+    
+    UIBezierPath *chartLinePath = [UIBezierPath bezierPath];
+//    [chartLinePath setLineWidth:1.0];
+    [chartLinePath setLineCapStyle:kCGLineCapRound];
+    [chartLinePath setLineJoinStyle:kCGLineJoinRound];
+    
+    // 添加原点
+    CGPoint originPoint = CGPointMake(outLineXPoint, outLineYPoint+outLineHeight);
+    [self addPoint:originPoint atIndex:0 withValue:0];
+    [chartLinePath moveToPoint:originPoint];
+    
+    // 绘制数据线和点
+    for (int ii = 0; ii < dataArray.count; ii ++) {
+        
+        NSNumber *pointData = dataArray[ii];
+        CGFloat pointValue = pointData.doubleValue;
+        CGFloat normalizedValue = (pointValue - self.yValueMin)/(self.yValueMax - self.yValueMin);
+        
+        CGPoint chartPoint = CGPointMake(outLineXPoint+(ii+1)*outLineWidth/60, outLineYPoint+outLineHeight-normalizedValue*outLineHeight);
+        [chartLinePath addLineToPoint:chartPoint];
+        
+        [self addPoint:chartPoint atIndex:(ii+1) withValue:pointValue];
+        [chartLinePath moveToPoint:chartPoint];
+    }
+    
+    chartLineLayer.path = chartLinePath.CGPath;
+    chartLineLayer.strokeColor = [UIColor blueColor].CGColor;
+    chartLineLayer.fillColor = [UIColor clearColor].CGColor;
+    chartLineLayer.lineWidth = 1.0;
+    
+    [self.layer addSublayer:chartLineLayer];
+}
+
+- (void)addPoint:(CGPoint)point atIndex:(NSUInteger)index withValue:(CGFloat)value {
+    UIView *pointView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 4, 4)];
+    pointView.center = point;
+    pointView.layer.masksToBounds = YES;
+    pointView.layer.cornerRadius = 2;
+    pointView.layer.borderWidth = 1;
+    pointView.layer.borderColor = [UIColor clearColor].CGColor;
+    pointView.layer.backgroundColor = [UIColor redColor].CGColor;
+    
+    [self addSubview:pointView];
 }
 
 // 绘制框线

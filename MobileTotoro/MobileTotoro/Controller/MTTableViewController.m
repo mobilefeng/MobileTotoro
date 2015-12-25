@@ -15,6 +15,9 @@
 #import "MTSummaryTableViewCell.h"
 #import "MTChartTableViewCell.h"
 
+// Model
+#import "MTPerformanceManager.h"
+
 /*
  *  Sections
  */
@@ -66,6 +69,17 @@ typedef NS_ENUM(NSUInteger, eMTTableViewChartRow) {
                         @"70M", @"memMax",
                         @"39M", @"memMean",
                         @"55Hz", @"fpsNow", nil];
+    
+//    [[MTPerformanceManager sharedInstance] start];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateTableView:)
+                                                 name:@"UpdateView"
+                                               object:nil];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UpdateView" object:nil];
 }
 
 #pragma mark - Tableview DateSource & Delegate
@@ -127,11 +141,18 @@ typedef NS_ENUM(NSUInteger, eMTTableViewChartRow) {
                     if (!cell) {
                         cell = [[MTChartTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
                     }
+                    [cell refreshChartCellWithData:[MTPerformanceManager sharedInstance].CPUArray];
                     return cell;
                 }
                     break;
                 case eMTTableViewChartRowMEM: {
-                    
+                    static NSString *cellIdentifier = @"MEMChartCell";
+                    MTChartTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+                    if (!cell) {
+                        cell = [[MTChartTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+                    }
+                    [cell refreshChartCellWithData:[MTPerformanceManager sharedInstance].MEMArray];
+                    return cell;
                 }
                     break;
             }
@@ -140,6 +161,11 @@ typedef NS_ENUM(NSUInteger, eMTTableViewChartRow) {
     }
     
     return [[UITableViewCell alloc] init];
+}
+
+- (void)updateTableView:(NSNotification *)notification{
+    NSLog(@"Get Notification!!!!!!!!!!!!!!");
+    [self.tableView reloadData];
 }
 
 @end

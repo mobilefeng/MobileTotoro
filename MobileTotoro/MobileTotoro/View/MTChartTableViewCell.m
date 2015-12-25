@@ -16,6 +16,7 @@
 @interface MTChartTableViewCell ()<MTChartDataSource>
 
 @property (nonatomic, strong) MTChartView* chart;
+@property (nonatomic, strong) NSArray *sourceDataArray;
 
 @end
 
@@ -30,6 +31,11 @@
     return self;
 }
 
+- (void)refreshChartCellWithData:(NSArray *)dataArray {
+    self.sourceDataArray = dataArray;
+    [self.chart drawLineWithData:self.sourceDataArray];
+}
+
 - (NSArray *)getArrayFrom:(NSUInteger)start To:(NSUInteger)end WithPointNum:(NSUInteger)pointNum {
     NSMutableArray *arr = [NSMutableArray array];
     NSUInteger interval = (end - start) / (pointNum-1);
@@ -39,7 +45,6 @@
     }
     return arr;
 }
-
 
 #pragma mark - MTChartDataSource
 - (NSArray *)MTChartXLabelArray:(MTChartView *)chart {

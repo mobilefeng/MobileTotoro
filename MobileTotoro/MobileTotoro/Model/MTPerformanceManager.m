@@ -8,14 +8,24 @@
 
 #import "MTPerformanceManager.h"
 
+#import "MTPerformanceModel.h"
+
+static const NSUInteger IntervalNum = 5;
+
 @interface MTPerformanceManager()
 
 @property (nonatomic, strong) NSTimer *sampleTimer;
+@property (nonatomic, assign) NSTimeInterval sampleTimeInterval;
+@property (nonatomic, strong) NSMutableArray *PFMArray;
+
+@property (nonatomic, strong, readwrite) NSMutableArray *CPUArray;
 
 @end
 
 @implementation MTPerformanceManager
 
+
+#pragma mark - Init
 + (instancetype)sharedInstance {
     static id _sharedInstance = nil;
     static dispatch_once_t oncePredicate;
@@ -27,17 +37,50 @@
     return _sharedInstance;
 }
 
-- (void)start {
-    self.sampleTimer = [NSTimer scheduledTimerWithTimeInterval:1
-                                                            target:self
-                                                          selector:@selector(ActivityMonitor:)
-                                                          userInfo:nil
-                                                           repeats:YES];
+- (id)init {
+    self = [super init];
+    
+    if (self) {
+        _sampleTimeInterval = 1.0;
+        _PFMArray = [NSMutableArray array];
+        _CPUArray = [NSMutableArray array];
+        _MEMArray = [NSMutableArray array];
+    }
+    
+    return self;
 }
 
+#pragma mark - Public Method
+- (void)start {
+    self.sampleTimer = [NSTimer scheduledTimerWithTimeInterval:self.sampleTimeInterval
+                                                        target:self
+                                                      selector:@selector(ActivityMonitor:)
+                                                      userInfo:nil
+                                                       repeats:YES];
+}
+
+
+#pragma mark - Get Performance Data
 - (void)ActivityMonitor:(NSTimer *)timer {
     NSLog(@"CPU is %f", [self getCpuUsage]);
     NSLog(@"MEM is %f", [self getMemUsage]);
+    
+    MTPerformanceModel *PFMModel = [[MTPerformanceModel alloc] initWithCPU:[NSNumber numberWithFloat:[self getCpuUsage]]
+                                                                       MEM:[NSNumber numberWithFloat:[self getMemUsage]]
+                                                                       FPS:[NSNumber numberWithFloat:[self getFpsUsage]]
+                                                                    atTime:[NSDate date]];
+    
+    [self.PFMArray addObject:PFMModel];
+    if ([self.PFMArray count] % IntervalNum == 0) {
+        for (int index = 0; index < IntervalNum; index ++) {
+            MTPerformanceModel *modelAtIndex = [self.PFMArray objectAtIndex:(self.PFMArray.count-IntervalNum+index)];
+            NSNumber *cpuAtIndex = modelAtIndex.cpuValue;
+            [self.CPUArray addObject:cpuAtIndex];
+            NSNumber *memAtIndex = modelAtIndex.memValue;
+            [self.MEMArray addObject:memAtIndex];
+        }
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateView" object:nil];
+    }
 }
 
 - (float)getCpuUsage {
