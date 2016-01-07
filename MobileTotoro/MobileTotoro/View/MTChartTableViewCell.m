@@ -26,6 +26,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.chart = [[MTChartView alloc] initWithFrame:CGRectMake(0, 0, kMTWindowWidth, 0.5*kMTWindowWidth) withSource:self];
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self.contentView addSubview:self.chart];
     }
     return self;

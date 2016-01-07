@@ -20,12 +20,17 @@
 #define kMTSummaryYellowColor           (UIColorFromRGB(0xF8E71C))
 
 #define kMTOutLineColor                 (UIColorFromRGB(0xBFBFBF))
-#define kMTInLineColr                   (UIColorFromRGB(0xEFEFEF))
+#define kMTInLineColor                  (UIColorFromRGB(0xEFEFEF))
 
+#define kMTChartLineColor               (UIColorFromRGB(0x43B1FC))
+#define kMTChartPointColor              (UIColorFromRGB(0xFD7734))
 
 // 尺寸
 #define kMTWindowWidth                  ([UIScreen mainScreen].bounds.size.width)
 #define kMTWindowHeight                 ([UIScreen mainScreen].bounds.size.height)
+
+#define kMTLogoSize                     (0.2*kMTWindowWidth)
+
 
 
 #endif /* MTMacro_h */

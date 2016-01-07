@@ -10,6 +10,6 @@
 
 @interface MTSummaryTableViewCell : UITableViewCell
 
-- (void)refreshCellWithData:(NSDictionary *)data;
+- (void)refreshSummaryCellWithData:(NSArray *)dataArray;
 
 @end

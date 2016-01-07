@@ -61,25 +61,24 @@ typedef NS_ENUM(NSUInteger, eMTTableViewChartRow) {
     // 初始化假数据model
     self.summaryData = [NSDictionary dictionaryWithObjectsAndKeys:
                         @"35%", @"cpuNow",
-                        @"0%", @"cpuMin",
+                        @"0%",  @"cpuMin",
                         @"98%", @"cpuMax",
                         @"27%", @"cpuMean",
                         @"45M", @"memNow",
-                        @"0M", @"memMin",
+                        @"0M",  @"memMin",
                         @"70M", @"memMax",
                         @"39M", @"memMean",
                         @"55Hz", @"fpsNow", nil];
     
-//    [[MTPerformanceManager sharedInstance] start];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(updateTableView:)
-                                                 name:@"UpdateView"
+                                                 name:@"UpdateChartView"
                                                object:nil];
 }
 
 - (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UpdateView" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"UpdateChartView" object:nil];
 }
 
 #pragma mark - Tableview DateSource & Delegate
@@ -129,7 +128,7 @@ typedef NS_ENUM(NSUInteger, eMTTableViewChartRow) {
             if (!cell) {
                 cell = [[MTSummaryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
             }
-            [cell refreshCellWithData:self.summaryData];
+            [cell refreshSummaryCellWithData:[MTPerformanceManager sharedInstance].SummaryArray];
             return cell;
         }
             break;
@@ -164,7 +163,6 @@ typedef NS_ENUM(NSUInteger, eMTTableViewChartRow) {
 }
 
 - (void)updateTableView:(NSNotification *)notification{
-    NSLog(@"Get Notification!!!!!!!!!!!!!!");
     [self.tableView reloadData];
 }
 

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		294F7F061C1E5C4000FE66C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 294F7F041C1E5C4000FE66C4 /* Main.storyboard */; };
+		2952D4571C2FBE8700F98713 /* MTLogoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2952D4561C2FBE8700F98713 /* MTLogoView.m */; };
 		298A16F21C1E6D7D00D4A978 /* MTPerformanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 298A16F11C1E6D7D00D4A978 /* MTPerformanceModel.m */; };
 		298A16F51C1E6D9800D4A978 /* MTPerformanceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 298A16F41C1E6D9800D4A978 /* MTPerformanceManager.m */; };
 		29A665281C140D2900300911 /* MTChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A665271C140D2900300911 /* MTChartView.m */; };
@@ -44,6 +45,8 @@
 
 /* Begin PBXFileReference section */
 		294F7F051C1E5C4000FE66C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2952D4551C2FBE8700F98713 /* MTLogoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MTLogoView.h; path = View/MTLogoView.h; sourceTree = "<group>"; };
+		2952D4561C2FBE8700F98713 /* MTLogoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MTLogoView.m; path = View/MTLogoView.m; sourceTree = "<group>"; };
 		298A16F01C1E6D7D00D4A978 /* MTPerformanceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MTPerformanceModel.h; path = Model/MTPerformanceModel.h; sourceTree = "<group>"; };
 		298A16F11C1E6D7D00D4A978 /* MTPerformanceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MTPerformanceModel.m; path = Model/MTPerformanceModel.m; sourceTree = "<group>"; };
 		298A16F31C1E6D9800D4A978 /* MTPerformanceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MTPerformanceManager.h; path = Model/MTPerformanceManager.h; sourceTree = "<group>"; };
@@ -103,6 +106,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2952D4511C2FB89700F98713 /* LogoView */ = {
+			isa = PBXGroup;
+			children = (
+				2952D4551C2FBE8700F98713 /* MTLogoView.h */,
+				2952D4561C2FBE8700F98713 /* MTLogoView.m */,
+			);
+			name = LogoView;
+			sourceTree = "<group>";
+		};
 		29A665241C140C9800300911 /* SummaryView */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +215,7 @@
 		29C70D291C0C27FA0018B7D7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2952D4511C2FB89700F98713 /* LogoView */,
 				29A665251C140CB200300911 /* ChartView */,
 				29A665241C140C9800300911 /* SummaryView */,
 			);
@@ -356,6 +369,7 @@
 				29A665281C140D2900300911 /* MTChartView.m in Sources */,
 				29C7267A1C0D72390089E12C /* MTChartTableViewCell.m in Sources */,
 				29C70CF11C0C18960018B7D7 /* main.m in Sources */,
+				2952D4571C2FBE8700F98713 /* MTLogoView.m in Sources */,
 				298A16F51C1E6D9800D4A978 /* MTPerformanceManager.m in Sources */,
 				29C70D241C0C1A640018B7D7 /* MTAppDelegate.m in Sources */,
 				298A16F21C1E6D7D00D4A978 /* MTPerformanceModel.m in Sources */,

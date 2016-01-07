@@ -10,7 +10,7 @@
 
 #import "MTPerformanceModel.h"
 
-static const NSUInteger IntervalNum = 5;
+static const NSUInteger kIntervalNum = 5;
 
 @interface MTPerformanceManager()
 
@@ -19,6 +19,18 @@ static const NSUInteger IntervalNum = 5;
 @property (nonatomic, strong) NSMutableArray *PFMArray;
 
 @property (nonatomic, strong, readwrite) NSMutableArray *CPUArray;
+@property (nonatomic, strong, readwrite) NSMutableArray *MEMArray;
+
+@property (nonatomic, strong, readwrite) NSMutableArray *SummaryArray;
+@property (nonatomic) float cpuCurrent;
+@property (nonatomic) float cpuMin;
+@property (nonatomic) float cpuMax;
+@property (nonatomic) float cpuMean;
+@property (nonatomic) float memCurrent;
+@property (nonatomic) float memMin;
+@property (nonatomic) float memMax;
+@property (nonatomic) float memMean;
+
 
 @end
 
@@ -42,9 +54,28 @@ static const NSUInteger IntervalNum = 5;
     
     if (self) {
         _sampleTimeInterval = 1.0;
+        
         _PFMArray = [NSMutableArray array];
         _CPUArray = [NSMutableArray array];
         _MEMArray = [NSMutableArray array];
+        
+        _cpuCurrent = 0.0f;
+        _cpuMax = 0.0f;
+        _cpuMin = 0.0f;
+        _cpuMean = 0.0f;
+        _memCurrent = 0.0f;
+        _memMax = 0.0f;
+        _memMin = 0.0f;
+        _memMean = 0.0f;
+        
+        _SummaryArray = [NSMutableArray arrayWithObjects:[NSNumber numberWithFloat:_cpuCurrent],
+                         [NSNumber numberWithFloat:_cpuMin],
+                         [NSNumber numberWithFloat:_cpuMax],
+                         [NSNumber numberWithFloat:_cpuMean],
+                         [NSNumber numberWithFloat:_memCurrent],
+                         [NSNumber numberWithFloat:_memMin],
+                         [NSNumber numberWithFloat:_memMax],
+                         [NSNumber numberWithFloat:_memMean],nil];
     }
     
     return self;
@@ -62,24 +93,46 @@ static const NSUInteger IntervalNum = 5;
 
 #pragma mark - Get Performance Data
 - (void)ActivityMonitor:(NSTimer *)timer {
-    NSLog(@"CPU is %f", [self getCpuUsage]);
-    NSLog(@"MEM is %f", [self getMemUsage]);
     
-    MTPerformanceModel *PFMModel = [[MTPerformanceModel alloc] initWithCPU:[NSNumber numberWithFloat:[self getCpuUsage]]
-                                                                       MEM:[NSNumber numberWithFloat:[self getMemUsage]]
+    _cpuCurrent = [self getCpuUsage];
+    _memCurrent = [self getMemUsage];
+    
+    _cpuMin = (self.PFMArray.count == 0) ? _cpuCurrent : MIN(_cpuCurrent, _cpuMin);
+    _memMin = (self.PFMArray.count == 0) ? _memCurrent : MIN(_memCurrent, _memMin);
+    
+    _cpuMax = MAX(_cpuCurrent, _cpuMax);
+    _memMax = MAX(_memCurrent, _memMax);
+    
+    _cpuMean = (self.PFMArray.count*_cpuMean + _cpuCurrent) / (self.PFMArray.count + 1);
+    _memMean = (self.PFMArray.count*_memMean + _memCurrent) / (self.PFMArray.count + 1);
+    
+    _SummaryArray = [NSMutableArray arrayWithObjects:[NSNumber numberWithFloat:_cpuCurrent],
+                     [NSNumber numberWithFloat:_cpuMin],
+                     [NSNumber numberWithFloat:_cpuMax],
+                     [NSNumber numberWithFloat:_cpuMean],
+                     [NSNumber numberWithFloat:_memCurrent],
+                     [NSNumber numberWithFloat:_memMin],
+                     [NSNumber numberWithFloat:_memMax],
+                     [NSNumber numberWithFloat:_memMean],nil];
+    
+    NSLog(@"CPU is %f", _cpuCurrent);
+    NSLog(@"MEM is %f", _memCurrent);
+    
+    MTPerformanceModel *PFMModel = [[MTPerformanceModel alloc] initWithCPU:[NSNumber numberWithFloat:_cpuCurrent]
+                                                                       MEM:[NSNumber numberWithFloat:_memCurrent]
                                                                        FPS:[NSNumber numberWithFloat:[self getFpsUsage]]
                                                                     atTime:[NSDate date]];
     
     [self.PFMArray addObject:PFMModel];
-    if ([self.PFMArray count] % IntervalNum == 0) {
-        for (int index = 0; index < IntervalNum; index ++) {
-            MTPerformanceModel *modelAtIndex = [self.PFMArray objectAtIndex:(self.PFMArray.count-IntervalNum+index)];
+    if ([self.PFMArray count] % kIntervalNum == 0) {
+        for (int index = 0; index < kIntervalNum; index ++) {
+            MTPerformanceModel *modelAtIndex = [self.PFMArray objectAtIndex:(self.PFMArray.count-kIntervalNum+index)];
             NSNumber *cpuAtIndex = modelAtIndex.cpuValue;
             [self.CPUArray addObject:cpuAtIndex];
             NSNumber *memAtIndex = modelAtIndex.memValue;
             [self.MEMArray addObject:memAtIndex];
         }
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateView" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"UpdateChartView" object:nil];
     }
 }
 

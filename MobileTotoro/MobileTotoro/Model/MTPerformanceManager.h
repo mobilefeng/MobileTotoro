@@ -25,4 +25,6 @@
 @property (nonatomic, strong, readonly) NSMutableArray *CPUArray;
 @property (nonatomic, strong, readonly) NSMutableArray *MEMArray;
 
+@property (nonatomic, strong, readonly) NSMutableArray *SummaryArray;
+
 @end
