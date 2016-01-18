@@ -137,6 +137,14 @@
 			name = ChartView;
 			sourceTree = "<group>";
 		};
+		29AD1AB51C45E80D00ABD935 /* Macro */ = {
+			isa = PBXGroup;
+			children = (
+				29C7266E1C0C46070089E12C /* MTMacro.h */,
+			);
+			name = Macro;
+			sourceTree = "<group>";
+		};
 		29C70CE31C0C18960018B7D7 = {
 			isa = PBXGroup;
 			children = (
@@ -160,12 +168,12 @@
 		29C70CEE1C0C18960018B7D7 /* MobileTotoro */ = {
 			isa = PBXGroup;
 			children = (
+				29AD1AB51C45E80D00ABD935 /* Macro */,
 				29C70D2A1C0C28040018B7D7 /* Controller */,
 				29C70D281C0C27EB0018B7D7 /* Model */,
 				29C70D291C0C27FA0018B7D7 /* View */,
 				29C70D221C0C1A640018B7D7 /* MTAppDelegate.h */,
 				29C70D231C0C1A640018B7D7 /* MTAppDelegate.m */,
-				29C7266E1C0C46070089E12C /* MTMacro.h */,
 				29C70CFB1C0C18960018B7D7 /* Assets.xcassets */,
 				29C70CEF1C0C18960018B7D7 /* Supporting Files */,
 			);
@@ -471,7 +479,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "95b366b2-7032-407d-a34d-24b000c892a3";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -509,7 +516,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "95b366b2-7032-407d-a34d-24b000c892a3";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

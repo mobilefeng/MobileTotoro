@@ -14,12 +14,12 @@
 @class MTChartView;
 @protocol MTChartDataSource <NSObject>
 
-@optional
-// 横坐标数组
-- (NSArray *)MTChartXLabelArray:(MTChartView *)chart;
-
-// 纵坐标数组
-- (NSArray *)MTChartYLabelArray:(MTChartView *)chart;
+//@optional
+//// 横坐标数组
+//- (NSArray *)MTChartXLabelArray:(MTChartView *)chart;
+//
+//// 纵坐标数组
+//- (NSArray *)MTChartYLabelArray:(MTChartView *)chart;
 
 @end
 

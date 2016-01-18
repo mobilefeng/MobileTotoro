@@ -37,23 +37,23 @@
     [self.chart drawLineWithData:self.sourceDataArray];
 }
 
-- (NSArray *)getArrayFrom:(NSUInteger)start To:(NSUInteger)end WithPointNum:(NSUInteger)pointNum {
-    NSMutableArray *arr = [NSMutableArray array];
-    NSUInteger interval = (end - start) / (pointNum-1);
-    for (int index = 0; index < pointNum; index ++) {
-        NSString *str = [NSString stringWithFormat:@"%lu", start+index*interval];
-        [arr addObject:str];
-    }
-    return arr;
-}
-
-#pragma mark - MTChartDataSource
-- (NSArray *)MTChartXLabelArray:(MTChartView *)chart {
-    return [self getArrayFrom:0 To:60 WithPointNum:7];
-}
-
-- (NSArray *)MTChartYLabelArray:(MTChartView *)chart {
-    return [self getArrayFrom:0 To:100 WithPointNum:5];
-}
+//- (NSArray *)getArrayFrom:(NSUInteger)start To:(NSUInteger)end WithPointNum:(NSUInteger)pointNum {
+//    NSMutableArray *arr = [NSMutableArray array];
+//    NSUInteger interval = (end - start) / (pointNum-1);
+//    for (int index = 0; index < pointNum; index ++) {
+//        NSString *str = [NSString stringWithFormat:@"%lu", start+index*interval];
+//        [arr addObject:str];
+//    }
+//    return arr;
+//}
+//
+//#pragma mark - MTChartDataSource
+//- (NSArray *)MTChartXLabelArray:(MTChartView *)chart {
+//    return [self getArrayFrom:0 To:600 WithPointNum:61];
+//}
+//
+//- (NSArray *)MTChartYLabelArray:(MTChartView *)chart {
+//    return [self getArrayFrom:0 To:100 WithPointNum:5];
+//}
 
 @end

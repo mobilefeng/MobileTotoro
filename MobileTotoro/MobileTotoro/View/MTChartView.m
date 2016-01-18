@@ -17,6 +17,7 @@
 #define outLineYPoint   (0.1*frameHeight)
 #define outLineWidth    (frameWidth-0.25*frameHeight)
 #define outLineHeight   (0.8*frameHeight)
+#define scrollPageNum   (10)
 
 @interface MTChartView ()
 
@@ -26,6 +27,8 @@
 @property (nonatomic) CGFloat yValueMax;
 @property (nonatomic, strong) UIScrollView *chartScrollView;
 @property (nonatomic, strong) UIView *chartFullView;
+@property (nonatomic, strong) NSArray *xLabelArray;
+@property (nonatomic, strong) NSArray *yLabelArray;
 
 @end
 
@@ -44,14 +47,17 @@
         self.yValueMin = 0;
         self.yValueMax = 100;
         
-        CGRect scrollRect = CGRectMake(outLineXPoint, outLineYPoint, outLineWidth, outLineHeight);
+        CGRect scrollRect = CGRectMake(outLineXPoint, 0, outLineWidth, frameHeight);
         self.chartScrollView = [[UIScrollView alloc] initWithFrame:scrollRect];
         [self addSubview:self.chartScrollView];
         
-        CGRect fullRect = CGRectMake(0, 0, outLineWidth*10, outLineHeight);
+        CGRect fullRect = CGRectMake(0, 0, outLineWidth*scrollPageNum, frameHeight);
         self.chartFullView = [[UIView alloc] initWithFrame:fullRect];
         [self.chartScrollView addSubview:self.chartFullView];
         self.chartScrollView.contentSize = fullRect.size;
+        
+        self.xLabelArray = [self getArrayFrom:0 To:60*scrollPageNum WithPointNum:6*scrollPageNum+1];
+        self.yLabelArray = [self getArrayFrom:0 To:100 WithPointNum:5];
         
         [self setUpChart];
     }
@@ -61,13 +67,9 @@
 - (void)setUpChart {
     [self strokeChartFrame];
     
-    if ([self.dataSource respondsToSelector:@selector(MTChartXLabelArray:)]) {
-        [self strokeXLabel:[self.dataSource MTChartXLabelArray:self]];
-    }
+    [self strokeXLabel];
     
-    if ([self.dataSource respondsToSelector:@selector(MTChartYLabelArray:)]) {
-        [self strokeYLabel:[self.dataSource MTChartYLabelArray:self]];
-    }
+    [self strokeYLabel];
 }
 
 - (void)drawLineWithData:(NSArray *)dataArray {
@@ -86,8 +88,8 @@
     [chartLinePath setLineJoinStyle:kCGLineJoinRound];
     
     // 添加原点
-    CGPoint originPoint = CGPointMake(0, outLineHeight);
-    [self addPoint:originPoint atIndex:0 withValue:0];
+    CGPoint originPoint = CGPointMake(0, outLineYPoint+outLineHeight);
+//    [self addPoint:originPoint atIndex:0 withValue:0];
     [chartLinePath moveToPoint:originPoint];
     
     // 添加线和点
@@ -97,7 +99,7 @@
         CGFloat pointValue = pointData.doubleValue;
         CGFloat normalizedValue = (pointValue - self.yValueMin)/(self.yValueMax - self.yValueMin);
         
-        CGPoint chartPoint = CGPointMake((ii+1)*outLineWidth/60, outLineHeight-normalizedValue*outLineHeight);
+        CGPoint chartPoint = CGPointMake((ii+1)*outLineWidth/60, outLineYPoint+outLineHeight-normalizedValue*outLineHeight);
         [chartLinePath addLineToPoint:chartPoint];
         
         // 添加Point则可以支持点击显示值，但这块会导致内存增加较快，故先注释掉
@@ -163,28 +165,28 @@
 }
 
 // 绘制X轴坐标
-- (void)strokeXLabel:(NSArray *)xLabelArray {
+- (void)strokeXLabel {
     NSUInteger xLabelNum = 6;
-    for (int index = 0; index <= xLabelNum; index ++) {
+    for (int index = 0; index <= xLabelNum*scrollPageNum; index ++) {
         CGFloat labelWidth = 20;
         CGFloat labelHeight = 8;
-        CGFloat labelCenterX = outLineXPoint + index*outLineWidth/xLabelNum;
+        CGFloat labelCenterX = index*outLineWidth/xLabelNum + labelWidth/2;
         CGFloat labelCenterY = (outLineYPoint + outLineHeight + frameHeight)/2;
         CGFloat labelX = labelCenterX - labelWidth/2;
         CGFloat labelY = labelCenterY - labelHeight/2;
         
         UILabel *xLabel = [[UILabel alloc] initWithFrame:CGRectMake(labelX, labelY, labelWidth, labelHeight)];
-        if ([xLabelArray count] == xLabelNum+1) {
-            xLabel.text = [xLabelArray objectAtIndex:index];
-            xLabel.font = [UIFont systemFontOfSize:10];
-            xLabel.textAlignment = NSTextAlignmentCenter;
-            [self addSubview:xLabel];
-        }
+
+        xLabel.text = [self.xLabelArray objectAtIndex:index];
+        xLabel.font = [UIFont systemFontOfSize:10];
+        xLabel.textAlignment = NSTextAlignmentLeft;
+        [self.chartFullView addSubview:xLabel];
+
     }
 }
 
 // 绘制Y轴坐标
-- (void)strokeYLabel:(NSArray *)yLabelArray {
+- (void)strokeYLabel {
     NSUInteger yLabelNum = 4;
     for (int index = 0; index <= yLabelNum; index ++) {
         CGFloat labelWidth = 20;
@@ -195,13 +197,22 @@
         CGFloat labelY = labelCenterY - labelHeight/2;
         
         UILabel *yLabel = [[UILabel alloc] initWithFrame:CGRectMake(labelX, labelY, labelWidth, labelHeight)];
-        if ([yLabelArray count] == yLabelNum+1) {
-            yLabel.text = [yLabelArray objectAtIndex:index];
-            yLabel.font = [UIFont systemFontOfSize:10];
-            yLabel.textAlignment = NSTextAlignmentRight;
-            [self addSubview:yLabel];
-        }
+
+        yLabel.text = [self.yLabelArray objectAtIndex:index];
+        yLabel.font = [UIFont systemFontOfSize:10];
+        yLabel.textAlignment = NSTextAlignmentRight;
+        [self addSubview:yLabel];
     }
+}
+
+- (NSArray *)getArrayFrom:(NSUInteger)start To:(NSUInteger)end WithPointNum:(NSUInteger)pointNum {
+    NSMutableArray *arr = [NSMutableArray array];
+    NSUInteger interval = (end - start) / (pointNum-1);
+    for (int index = 0; index < pointNum; index ++) {
+        NSString *str = [NSString stringWithFormat:@"%lu", start+index*interval];
+        [arr addObject:str];
+    }
+    return arr;
 }
 
 @end
