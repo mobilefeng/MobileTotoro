@@ -43,6 +43,8 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
+        self.layer.borderColor = kMTBorderColor.CGColor;
+        self.layer.borderWidth = 0.5;
         self.clipsToBounds = YES;
         self.yValueMin = 0;
         self.yValueMax = 100;
@@ -89,7 +91,6 @@
     
     // 添加原点
     CGPoint originPoint = CGPointMake(0, outLineYPoint+outLineHeight);
-//    [self addPoint:originPoint atIndex:0 withValue:0];
     [chartLinePath moveToPoint:originPoint];
     
     // 添加线和点
@@ -103,7 +104,6 @@
         [chartLinePath addLineToPoint:chartPoint];
         
         // 添加Point则可以支持点击显示值，但这块会导致内存增加较快，故先注释掉
-//        [self addPoint:chartPoint atIndex:(ii+1) withValue:pointValue];
         [chartLinePath moveToPoint:chartPoint];
     }
     

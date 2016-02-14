@@ -12,6 +12,8 @@
 		298A16F21C1E6D7D00D4A978 /* MTPerformanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 298A16F11C1E6D7D00D4A978 /* MTPerformanceModel.m */; };
 		298A16F51C1E6D9800D4A978 /* MTPerformanceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 298A16F41C1E6D9800D4A978 /* MTPerformanceManager.m */; };
 		29A665281C140D2900300911 /* MTChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A665271C140D2900300911 /* MTChartView.m */; };
+		29ABAFDA1C5360DE0032FBC5 /* MTChartOverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29ABAFD91C5360DE0032FBC5 /* MTChartOverView.m */; };
+		29ABAFDD1C5361000032FBC5 /* MTChartDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29ABAFDC1C5361000032FBC5 /* MTChartDrawView.m */; };
 		29C70CF11C0C18960018B7D7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C70CF01C0C18960018B7D7 /* main.m */; };
 		29C70CFC1C0C18960018B7D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29C70CFB1C0C18960018B7D7 /* Assets.xcassets */; };
 		29C70CFF1C0C18960018B7D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29C70CFD1C0C18960018B7D7 /* LaunchScreen.storyboard */; };
@@ -53,6 +55,10 @@
 		298A16F41C1E6D9800D4A978 /* MTPerformanceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MTPerformanceManager.m; path = Model/MTPerformanceManager.m; sourceTree = "<group>"; };
 		29A665261C140D2900300911 /* MTChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MTChartView.h; path = View/MTChartView.h; sourceTree = "<group>"; };
 		29A665271C140D2900300911 /* MTChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MTChartView.m; path = View/MTChartView.m; sourceTree = "<group>"; };
+		29ABAFD81C5360DE0032FBC5 /* MTChartOverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MTChartOverView.h; path = View/MTChartOverView.h; sourceTree = "<group>"; };
+		29ABAFD91C5360DE0032FBC5 /* MTChartOverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MTChartOverView.m; path = View/MTChartOverView.m; sourceTree = "<group>"; };
+		29ABAFDB1C5361000032FBC5 /* MTChartDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MTChartDrawView.h; path = View/MTChartDrawView.h; sourceTree = "<group>"; };
+		29ABAFDC1C5361000032FBC5 /* MTChartDrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MTChartDrawView.m; path = View/MTChartDrawView.m; sourceTree = "<group>"; };
 		29C70CEC1C0C18960018B7D7 /* MobileTotoro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileTotoro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29C70CF01C0C18960018B7D7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29C70CFB1C0C18960018B7D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -131,6 +137,10 @@
 			children = (
 				29C726781C0D72390089E12C /* MTChartTableViewCell.h */,
 				29C726791C0D72390089E12C /* MTChartTableViewCell.m */,
+				29ABAFD81C5360DE0032FBC5 /* MTChartOverView.h */,
+				29ABAFD91C5360DE0032FBC5 /* MTChartOverView.m */,
+				29ABAFDB1C5361000032FBC5 /* MTChartDrawView.h */,
+				29ABAFDC1C5361000032FBC5 /* MTChartDrawView.m */,
 				29A665261C140D2900300911 /* MTChartView.h */,
 				29A665271C140D2900300911 /* MTChartView.m */,
 			);
@@ -382,8 +392,10 @@
 				29C70D241C0C1A640018B7D7 /* MTAppDelegate.m in Sources */,
 				298A16F21C1E6D7D00D4A978 /* MTPerformanceModel.m in Sources */,
 				29C7267D1C0D92C40089E12C /* MTSummaryView.m in Sources */,
+				29ABAFDA1C5360DE0032FBC5 /* MTChartOverView.m in Sources */,
 				29C7266D1C0C45200089E12C /* MTBaseNavigationController.m in Sources */,
 				29C726741C0C4BC40089E12C /* MTTableViewController.m in Sources */,
+				29ABAFDD1C5361000032FBC5 /* MTChartDrawView.m in Sources */,
 				29C726771C0D72130089E12C /* MTSummaryTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -526,6 +538,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MobileTotoro/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.baidu.MobileTotoro;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -537,6 +550,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MobileTotoro/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.baidu.MobileTotoro;
 				PRODUCT_NAME = "$(TARGET_NAME)";

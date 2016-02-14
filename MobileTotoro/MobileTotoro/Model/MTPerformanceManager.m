@@ -10,7 +10,7 @@
 
 #import "MTPerformanceModel.h"
 
-static const NSUInteger kIntervalNum = 5;
+static const NSUInteger kIntervalNum = 1;
 
 @interface MTPerformanceManager()
 
@@ -22,15 +22,15 @@ static const NSUInteger kIntervalNum = 5;
 @property (nonatomic, strong, readwrite) NSMutableArray *MEMArray;
 
 @property (nonatomic, strong, readwrite) NSMutableArray *SummaryArray;
-@property (nonatomic) float cpuCurrent;
-@property (nonatomic) float cpuMin;
-@property (nonatomic) float cpuMax;
-@property (nonatomic) float cpuMean;
-@property (nonatomic) float memCurrent;
-@property (nonatomic) float memMin;
-@property (nonatomic) float memMax;
-@property (nonatomic) float memMean;
-
+@property (nonatomic, readwrite) float cpuCurrent;
+@property (nonatomic, readwrite) float cpuMin;
+@property (nonatomic, readwrite) float cpuMax;
+@property (nonatomic, readwrite) float cpuMean;
+@property (nonatomic, readwrite) float memCurrent;
+@property (nonatomic, readwrite) float memMin;
+@property (nonatomic, readwrite) float memMax;
+@property (nonatomic, readwrite) float memMean;
+@property (nonatomic, readwrite) float duration;
 
 @end
 
@@ -67,6 +67,7 @@ static const NSUInteger kIntervalNum = 5;
         _memMax = 0.0f;
         _memMin = 0.0f;
         _memMean = 0.0f;
+        _duration = 0.0f;
         
         _SummaryArray = [NSMutableArray arrayWithObjects:[NSNumber numberWithFloat:_cpuCurrent],
                          [NSNumber numberWithFloat:_cpuMin],
@@ -94,6 +95,8 @@ static const NSUInteger kIntervalNum = 5;
 #pragma mark - Get Performance Data
 - (void)ActivityMonitor:(NSTimer *)timer {
     
+    _duration += self.sampleTimeInterval;
+    
     _cpuCurrent = [self getCpuUsage];
     _memCurrent = [self getMemUsage];
     
@@ -114,9 +117,6 @@ static const NSUInteger kIntervalNum = 5;
                      [NSNumber numberWithFloat:_memMin],
                      [NSNumber numberWithFloat:_memMax],
                      [NSNumber numberWithFloat:_memMean],nil];
-    
-    NSLog(@"CPU is %f", _cpuCurrent);
-    NSLog(@"MEM is %f", _memCurrent);
     
     MTPerformanceModel *PFMModel = [[MTPerformanceModel alloc] initWithCPU:[NSNumber numberWithFloat:_cpuCurrent]
                                                                        MEM:[NSNumber numberWithFloat:_memCurrent]

@@ -25,6 +25,15 @@
 @property (nonatomic, strong, readonly) NSMutableArray *CPUArray;
 @property (nonatomic, strong, readonly) NSMutableArray *MEMArray;
 
-@property (nonatomic, strong, readonly) NSMutableArray *SummaryArray;
+//@property (nonatomic, strong, readonly) NSMutableArray *SummaryArray;
+@property (nonatomic, readonly) float cpuCurrent;
+@property (nonatomic, readonly) float cpuMin;
+@property (nonatomic, readonly) float cpuMax;
+@property (nonatomic, readonly) float cpuMean;
+@property (nonatomic, readonly) float memCurrent;
+@property (nonatomic, readonly) float memMin;
+@property (nonatomic, readonly) float memMax;
+@property (nonatomic, readonly) float memMean;
+@property (nonatomic, readonly) float duration;
 
 @end

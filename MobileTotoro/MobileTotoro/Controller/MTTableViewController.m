@@ -33,17 +33,28 @@ typedef NS_ENUM(NSUInteger, eMTTableViewSection) {
 typedef NS_ENUM(NSUInteger, eMTTableViewChartRow) {
     eMTTableViewChartRowCPU = 0,
     eMTTableViewChartRowMEM,
-//    eMTTableViewChartRowFPS,
     eMTTableViewChartRowCount,
 };
 
 @interface MTTableViewController ()
 
-@property NSDictionary *summaryData;
+@property (nonatomic) BOOL firstCPUFlag;
+@property (nonatomic) BOOL firstMEMFlag;
 
 @end
 
 @implementation MTTableViewController
+
+#pragma mark - Init
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _firstCPUFlag = YES;
+        _firstMEMFlag = YES;
+    }
+    return self;
+}
 
 #pragma mark - Lifecycle
 - (void)viewDidLoad {
@@ -58,23 +69,15 @@ typedef NS_ENUM(NSUInteger, eMTTableViewChartRow) {
     // 设置navigation属性
     [self.navigationItem setTitle:@"MobileTotoro"];
     
-    // 初始化假数据model
-    self.summaryData = [NSDictionary dictionaryWithObjectsAndKeys:
-                        @"35%", @"cpuNow",
-                        @"0%",  @"cpuMin",
-                        @"98%", @"cpuMax",
-                        @"27%", @"cpuMean",
-                        @"45M", @"memNow",
-                        @"0M",  @"memMin",
-                        @"70M", @"memMax",
-                        @"39M", @"memMean",
-                        @"55Hz", @"fpsNow", nil];
-    
-    
+    // 添加通知
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(updateTableView:)
                                                  name:@"UpdateChartView"
                                                object:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 }
 
 - (void)dealloc {
@@ -97,6 +100,7 @@ typedef NS_ENUM(NSUInteger, eMTTableViewChartRow) {
         case eMTTableViewSectionChart: {
             nuoOfRow = eMTTableViewChartRowCount;
         }
+            break;
     }
     
     return nuoOfRow;
@@ -107,11 +111,11 @@ typedef NS_ENUM(NSUInteger, eMTTableViewChartRow) {
     
     switch (indexPath.section) {
         case eMTTableViewSectionSummary: {
-            heightForCell = 0.25 * kMTWindowWidth;
+            heightForCell = kMTSummaryCellHeight;
         }
             break;
         case eMTTableViewSectionChart: {
-            heightForCell = 0.5 * kMTWindowWidth;
+            heightForCell = kMTChartCellHeight;
         }
             break;
     }
@@ -128,7 +132,7 @@ typedef NS_ENUM(NSUInteger, eMTTableViewChartRow) {
             if (!cell) {
                 cell = [[MTSummaryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
             }
-            [cell refreshSummaryCellWithData:[MTPerformanceManager sharedInstance].SummaryArray];
+            [cell updateSummaryCell];
             return cell;
         }
             break;
@@ -138,9 +142,12 @@ typedef NS_ENUM(NSUInteger, eMTTableViewChartRow) {
                     static NSString *cellIdentifier = @"CPUChartCell";
                     MTChartTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
                     if (!cell) {
-                        cell = [[MTChartTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+                        cell = [[MTChartTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier type:eMTViewTypeCPU];
                     }
-                    [cell refreshChartCellWithData:[MTPerformanceManager sharedInstance].CPUArray];
+                    [cell updateChartCellWithFlag:_firstCPUFlag];
+                    if (_firstCPUFlag) {
+                        _firstCPUFlag = NO;
+                    }
                     return cell;
                 }
                     break;
@@ -148,9 +155,12 @@ typedef NS_ENUM(NSUInteger, eMTTableViewChartRow) {
                     static NSString *cellIdentifier = @"MEMChartCell";
                     MTChartTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
                     if (!cell) {
-                        cell = [[MTChartTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+                        cell = [[MTChartTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier type:eMTViewTypeMEM];
                     }
-                    [cell refreshChartCellWithData:[MTPerformanceManager sharedInstance].MEMArray];
+                    [cell updateChartCellWithFlag:_firstMEMFlag];
+                    if (_firstMEMFlag) {
+                        _firstMEMFlag = NO;
+                    }
                     return cell;
                 }
                     break;
@@ -160,6 +170,12 @@ typedef NS_ENUM(NSUInteger, eMTTableViewChartRow) {
     }
     
     return [[UITableViewCell alloc] init];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    CGFloat heightForHeader = 0.0;
+    
+    return heightForHeader;
 }
 
 - (void)updateTableView:(NSNotification *)notification{

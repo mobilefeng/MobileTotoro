@@ -8,16 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+#import "MTMacro.h"
+
 @interface MTSummaryView : UIView
 
-- (void)setTitle:(NSString *)title;
-
-- (void)setCurrentValue:(NSString *)currentValue;
-
-- (void)setMinValue:(NSString *)minValue;
-
-- (void)setMaxValue:(NSString *)macValue;
-
-- (void)setMeanValue:(NSString *)meanValue;
+- (instancetype)initWithFrame:(CGRect)frame type:(eMTViewType)type;
+- (void)updateViewWithDate:(NSNumber *)value;
 
 @end

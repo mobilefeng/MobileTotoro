@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+#import "MTMacro.h"
+
 @interface MTChartTableViewCell : UITableViewCell
 
-- (void)refreshChartCellWithData:(NSArray *)dataArray;
+- (instancetype)initWithStyle:(UITableViewCellStyle)style
+              reuseIdentifier:(NSString *)reuseIdentifier
+                         type:(eMTViewType)type;
+
+- (void)updateChartCellWithFlag:(BOOL)firstFlag;
 
 @end

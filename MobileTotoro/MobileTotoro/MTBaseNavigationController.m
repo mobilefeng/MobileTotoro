@@ -20,7 +20,6 @@
     if (self = [super initWithRootViewController:rootViewController]) {
         [self.navigationBar setTintColor:kMTThemeColor];
         [[UINavigationBar appearance] setBarTintColor:kMTNavColor];
-        
     }
     return self;
 }
@@ -28,7 +27,7 @@
 - (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated {
     [super pushViewController:viewController animated:animated];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] init];
-    item.title = @"返回";
+    item.title = @"";
     viewController.navigationItem.backBarButtonItem = item;
 }
 
