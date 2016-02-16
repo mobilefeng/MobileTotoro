@@ -69,6 +69,13 @@ typedef NS_ENUM(NSUInteger, eMTTableViewChartRow) {
     // 设置navigation属性
     [self.navigationItem setTitle:@"MobileTotoro"];
     
+    // 添加一键清除按钮
+    UIBarButtonItem *clearItem = [[UIBarButtonItem alloc] initWithTitle:@"一键清除"
+                                                                  style:UIBarButtonItemStylePlain
+                                                                 target:self
+                                                                 action:@selector(clearAction)];
+    self.navigationItem.rightBarButtonItem = clearItem;
+    
     // 添加通知
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(updateTableView:)
@@ -180,6 +187,10 @@ typedef NS_ENUM(NSUInteger, eMTTableViewChartRow) {
 
 - (void)updateTableView:(NSNotification *)notification{
     [self.tableView reloadData];
+}
+
+- (void)clearAction {
+    [[MTPerformanceManager sharedInstance] clear];
 }
 
 @end

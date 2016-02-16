@@ -7,14 +7,12 @@
 //
 
 #import "MTChartTableViewCell.h"
-#import "MTChartView.h"
 #import "MTChartOverView.h"
 #import "MTChartDrawView.h"
 #import "MTPerformanceManager.h"
 
-@interface MTChartTableViewCell ()<MTChartDataSource>
+@interface MTChartTableViewCell ()
 
-@property (nonatomic, strong) MTChartView* chart;
 @property (nonatomic, strong) NSArray *sourceDataArray;
 
 @property (nonatomic, strong) MTChartOverView *chartOverView;

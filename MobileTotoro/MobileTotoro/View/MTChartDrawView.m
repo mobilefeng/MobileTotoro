@@ -42,6 +42,11 @@ static const int stepPerXLabel = 5;
 @property (nonatomic) BOOL isSmooth;
 @property (nonatomic) CGFloat bezierSmoothingTension;
 
+// 数值标签
+@property (nonatomic, strong) UILabel *valueLabel;
+@property (nonatomic, strong) UIView *valuePoint;
+@property (nonatomic, strong) UIView *valueLine;
+
 @end
 
 @implementation MTChartDrawView
@@ -75,6 +80,11 @@ static const int stepPerXLabel = 5;
         _chartFullView = [[UIView alloc] initWithFrame:fullRect];
         [_chartScrollView addSubview:_chartFullView];
         _chartScrollView.contentSize = fullRect.size;
+        
+        // 添加点击展示值的手势动作
+        UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(showValue:)];
+        longPress.minimumPressDuration = 0.1;
+        [_chartFullView addGestureRecognizer:longPress];
         
         // 绘制标签
         [self strokeYLabel];
@@ -136,6 +146,12 @@ static const int stepPerXLabel = 5;
 
 - (void)updateChartData:(NSArray *)chartData withFlag:(BOOL)firstFlag {
     _chartData = [NSMutableArray arrayWithArray:chartData];
+    
+    if (_chartData.count <= 1) {
+        [[self.chartFullView.layer.sublayers copy] makeObjectsPerformSelector:@selector(removeFromSuperlayer)];
+        [self strokeXLabel];
+    }
+    
     UIBezierPath *path,*fill;
     if (firstFlag) {
         path = [self getLinePathFromStart:0
@@ -265,6 +281,57 @@ static const int stepPerXLabel = 5;
     
     return CGPointMake(index*borderWidth/(xLabelPerPage*stepPerXLabel),
                        borderY+borderHeight-normalizedValue*borderHeight-0.5);
+}
+
+- (void)showValue:(UIGestureRecognizer *)recognizer{
+    
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        CGPoint tapPoint = [recognizer locationInView:_chartFullView];
+        int tapXValue = (int)(tapPoint.x*3.0/25.0+0.5);
+        NSNumber *tapYValue;
+        if (tapXValue > 0 && tapXValue <= self.chartData.count) {
+            tapYValue = self.chartData[tapXValue-1];
+        } else {
+            return;
+        }
+        CGPoint tapValuePoint = [self getPointAtIndex:tapXValue];
+        
+        CGRect labelRect = CGRectMake(tapValuePoint.x-14, 6, 28, 14);
+        _valueLabel = [[UILabel alloc] initWithFrame:labelRect];
+        if (_viewType == eMTViewTypeCPU) {
+            _valueLabel.text = [NSString stringWithFormat:@"%.1f%% ", tapYValue.doubleValue];
+        } else if (_viewType == eMTViewTypeMEM) {
+            _valueLabel.text = [NSString stringWithFormat:@"%.1fM ", tapYValue.doubleValue];
+        }
+        _valueLabel.textAlignment = NSTextAlignmentCenter;
+        _valueLabel.textColor = [UIColor whiteColor];
+        _valueLabel.backgroundColor = self.pathColor;
+        _valueLabel.font = [UIFont systemFontOfSize:10];
+        _valueLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        [_valueLabel sizeToFit];
+        [_chartFullView addSubview:_valueLabel];
+        
+        CGRect lineRect = CGRectMake(tapValuePoint.x-0.5, margin, 1, borderHeight);
+        _valueLine = [[UIView alloc] initWithFrame:lineRect];
+        _valueLine.backgroundColor = self.pathColor;
+        [_chartFullView addSubview:_valueLine];
+        
+        CGRect pointRect = CGRectMake(0, 0, 4, 4);
+        _valuePoint = [[UIView alloc] initWithFrame:pointRect];
+        _valuePoint.center = tapValuePoint;
+        _valuePoint.layer.cornerRadius = 2.0;
+        _valuePoint.layer.borderWidth = 1.0;
+        _valuePoint.layer.borderColor = self.pathColor.CGColor;
+        _valuePoint.layer.backgroundColor = self.fillColor.CGColor;
+        [_chartFullView addSubview:_valuePoint];
+    }
+    
+    if (recognizer.state == UIGestureRecognizerStateEnded) {
+        [_valueLabel removeFromSuperview];
+        [_valueLine removeFromSuperview];
+        [_valuePoint removeFromSuperview];
+    }
+    
 }
 
 @end

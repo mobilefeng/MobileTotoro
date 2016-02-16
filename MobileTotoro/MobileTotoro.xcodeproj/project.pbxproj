@@ -11,7 +11,6 @@
 		2952D4571C2FBE8700F98713 /* MTLogoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2952D4561C2FBE8700F98713 /* MTLogoView.m */; };
 		298A16F21C1E6D7D00D4A978 /* MTPerformanceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 298A16F11C1E6D7D00D4A978 /* MTPerformanceModel.m */; };
 		298A16F51C1E6D9800D4A978 /* MTPerformanceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 298A16F41C1E6D9800D4A978 /* MTPerformanceManager.m */; };
-		29A665281C140D2900300911 /* MTChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29A665271C140D2900300911 /* MTChartView.m */; };
 		29ABAFDA1C5360DE0032FBC5 /* MTChartOverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29ABAFD91C5360DE0032FBC5 /* MTChartOverView.m */; };
 		29ABAFDD1C5361000032FBC5 /* MTChartDrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 29ABAFDC1C5361000032FBC5 /* MTChartDrawView.m */; };
 		29C70CF11C0C18960018B7D7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29C70CF01C0C18960018B7D7 /* main.m */; };
@@ -53,8 +52,6 @@
 		298A16F11C1E6D7D00D4A978 /* MTPerformanceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MTPerformanceModel.m; path = Model/MTPerformanceModel.m; sourceTree = "<group>"; };
 		298A16F31C1E6D9800D4A978 /* MTPerformanceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MTPerformanceManager.h; path = Model/MTPerformanceManager.h; sourceTree = "<group>"; };
 		298A16F41C1E6D9800D4A978 /* MTPerformanceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MTPerformanceManager.m; path = Model/MTPerformanceManager.m; sourceTree = "<group>"; };
-		29A665261C140D2900300911 /* MTChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MTChartView.h; path = View/MTChartView.h; sourceTree = "<group>"; };
-		29A665271C140D2900300911 /* MTChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MTChartView.m; path = View/MTChartView.m; sourceTree = "<group>"; };
 		29ABAFD81C5360DE0032FBC5 /* MTChartOverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MTChartOverView.h; path = View/MTChartOverView.h; sourceTree = "<group>"; };
 		29ABAFD91C5360DE0032FBC5 /* MTChartOverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MTChartOverView.m; path = View/MTChartOverView.m; sourceTree = "<group>"; };
 		29ABAFDB1C5361000032FBC5 /* MTChartDrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MTChartDrawView.h; path = View/MTChartDrawView.h; sourceTree = "<group>"; };
@@ -141,8 +138,6 @@
 				29ABAFD91C5360DE0032FBC5 /* MTChartOverView.m */,
 				29ABAFDB1C5361000032FBC5 /* MTChartDrawView.h */,
 				29ABAFDC1C5361000032FBC5 /* MTChartDrawView.m */,
-				29A665261C140D2900300911 /* MTChartView.h */,
-				29A665271C140D2900300911 /* MTChartView.m */,
 			);
 			name = ChartView;
 			sourceTree = "<group>";
@@ -384,7 +379,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				29C70D271C0C1BEE0018B7D7 /* MTRootViewController.m in Sources */,
-				29A665281C140D2900300911 /* MTChartView.m in Sources */,
 				29C7267A1C0D72390089E12C /* MTChartTableViewCell.m in Sources */,
 				29C70CF11C0C18960018B7D7 /* main.m in Sources */,
 				2952D4571C2FBE8700F98713 /* MTLogoView.m in Sources */,

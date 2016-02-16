@@ -24,17 +24,6 @@
     if (self = [super init]) {
         self.view.backgroundColor = kMTBackgroundColor;
         
-//        CGFloat btnWidth = 0.25 * kMTWindowWidth;
-//        CGFloat btnHeigth = btnWidth;
-//        CGFloat btnX = (1 - 0.35) * kMTWindowWidth;
-//        CGFloat btnY = kMTWindowHeight - 0.35 * kMTWindowWidth;
-//        UIButton *demoButton = [[UIButton alloc] initWithFrame:CGRectMake(btnX, btnY, btnWidth, btnHeigth)];
-//        [demoButton setTitle:@"点我啦～" forState:UIControlStateNormal];
-//        [demoButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-//        [demoButton setImage:[UIImage imageNamed:@"button_totoro"] forState:UIControlStateNormal];
-//        [demoButton addTarget:self action:@selector(btnTouchAction:) forControlEvents:UIControlEventTouchUpInside];
-//        [self.view addSubview:demoButton];
-        
         MTLogoView *logo = [[MTLogoView alloc] initWithFrame:CGRectMake(0.5*kMTWindowWidth, 0.5*kMTWindowHeight, kMTLogoSize, kMTLogoSize)];
         logo.doubleTapBlock = ^{
             MTTableViewController *tableVC = [[MTTableViewController alloc] init];

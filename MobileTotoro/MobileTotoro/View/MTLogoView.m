@@ -105,7 +105,7 @@
 #pragma mark - Action
 
 - (void)singleTapAction:(UITapGestureRecognizer *)recognizer {
-    NSLog(@"single tap");
+    self.singleTapBlock();
 }
 
 - (void)doubleTapAction:(UITapGestureRecognizer *)recognizer {

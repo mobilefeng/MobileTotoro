@@ -21,6 +21,7 @@
 + (instancetype)sharedInstance;
 
 - (void)start;
+- (void)clear;
 
 @property (nonatomic, strong, readonly) NSMutableArray *CPUArray;
 @property (nonatomic, strong, readonly) NSMutableArray *MEMArray;

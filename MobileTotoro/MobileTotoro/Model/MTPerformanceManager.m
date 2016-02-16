@@ -91,6 +91,21 @@ static const NSUInteger kIntervalNum = 1;
                                                        repeats:YES];
 }
 
+- (void)clear {
+    [_PFMArray removeAllObjects];
+    [_CPUArray removeAllObjects];
+    [_MEMArray removeAllObjects];
+    
+    _cpuCurrent = 0.0f;
+    _cpuMax = 0.0f;
+    _cpuMin = 0.0f;
+    _cpuMean = 0.0f;
+    _memCurrent = 0.0f;
+    _memMax = 0.0f;
+    _memMin = 0.0f;
+    _memMean = 0.0f;
+    _duration = 0.0f;
+}
 
 #pragma mark - Get Performance Data
 - (void)ActivityMonitor:(NSTimer *)timer {
